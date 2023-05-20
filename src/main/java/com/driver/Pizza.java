@@ -25,12 +25,25 @@ public class Pizza {
         this.vegBasePrice=300;
         this.nonVegBasePrice=400;
         this.price=isVeg ? vegBasePrice:nonVegBasePrice;
-        this.bill="Base Price Of The Pizza:"+(isVeg ? vegBasePrice:nonVegBasePrice)+"\n";
+        this.bill="Base Price Of The Pizza: "+this.price+"\n";
         // your code goes here
     }
 
     public int getPrice(){
 
+        if(isExtraCheeseAdded)
+        {
+            this.price+=extraCheesePrice;
+
+        }
+        if(isToppingAdded){
+            this.price+=(isVeg ? extraToppingVeg : extraToppingNonVeg);
+
+        }
+        if(isPaperBagAdded)
+        {
+           this.price+=takeWayPrice;
+        }
         return this.price;
     }
 
@@ -39,8 +52,6 @@ public class Pizza {
         if(!isExtraCheeseAdded)
         {
             isExtraCheeseAdded=true;
-            price+=extraCheesePrice;
-
         }
     }
 
@@ -48,7 +59,6 @@ public class Pizza {
         // your code goes here
         if(!isToppingAdded){
             isToppingAdded=true;
-            price+=(isVeg ? extraToppingVeg : extraToppingNonVeg);
 
         }
     }
@@ -58,28 +68,29 @@ public class Pizza {
         if(!isPaperBagAdded)
         {
                isPaperBagAdded=true;
-               price+=takeWayPrice;
+
         }
 
     }
 
-    public String getBill(){
+    public String getBill()
+    {
         // your code goes here
 
         if(isExtraCheeseAdded)
         {
-            bill+="Extra Cheese Added:"+extraCheesePrice+"\n";
+            bill+="Extra Cheese Added: "+extraCheesePrice+"\n";
         }
         if(isToppingAdded)
         {
-            bill+="Extra Toppings Added:"+ (isVeg ? extraToppingVeg : extraToppingNonVeg)+"\n";
+            bill+="Extra Toppings Added: "+ (isVeg ? extraToppingVeg : extraToppingNonVeg)+"\n";
         }
         if(isPaperBagAdded)
         {
-            bill+="Paperbag Added:"+takeWayPrice+"\n";
+            bill+="Paperbag Added: "+takeWayPrice+"\n";
         }
 
-        bill+="Total Price: "+this.price+"\n";
+        bill+="Total Price: "+this.getPrice()+"\n";
         return this.bill;
     }
 }
