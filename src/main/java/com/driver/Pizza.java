@@ -11,7 +11,6 @@ public class Pizza {
     private int takeWayPrice;
     private int vegBasePrice;
     private int nonVegBasePrice;
-
     private boolean isPaperBagAdded;
     private boolean isToppingAdded;
     private boolean isExtraCheeseAdded;
@@ -31,14 +30,14 @@ public class Pizza {
 
     public int getPrice(){
 
+        this.price=isVeg ? vegBasePrice:nonVegBasePrice;
         if(isExtraCheeseAdded)
         {
             this.price+=extraCheesePrice;
-
         }
-        if(isToppingAdded){
+        if(isToppingAdded)
+        {
             this.price+=(isVeg ? extraToppingVeg : extraToppingNonVeg);
-
         }
         if(isPaperBagAdded)
         {
